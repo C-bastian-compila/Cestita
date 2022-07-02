@@ -4,6 +4,10 @@
  */
 package guicestita;
 
+import javax.swing.*;
+import package1.ColeccionListas;
+import package1.*;
+
 /**
  *
  * @author erikb
@@ -15,6 +19,28 @@ public class MenuInventario extends javax.swing.JFrame {
      */
     public MenuInventario() {
         initComponents();
+    }
+    
+    private JFrame anterior;
+    private Inventario inventario;
+    
+    public MenuInventario(JFrame anterior, Inventario inventario) {
+        
+        initComponents();
+        setLocationRelativeTo(null);
+        
+        this.anterior = anterior;
+        this.inventario = inventario;
+        
+        this. refrescar();
+    }
+    
+    public void refrescar() {
+        DefaultListModel <String> model = new DefaultListModel <>();
+        listarLista.setModel(model);
+        for(int i = 0; i < inventario.getCantProductos(); i++){
+            model.addElement(inventario.getProducto(i).getNombreProducto());
+        }
     }
 
     /**
@@ -35,7 +61,7 @@ public class MenuInventario extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        listarLista = new javax.swing.JList<>();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
@@ -74,12 +100,12 @@ public class MenuInventario extends javax.swing.JFrame {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/botonUsuario.png"))); // NOI18N
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(329, 30, -1, -1));
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        listarLista.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(listarLista);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 150, 250));
 
@@ -96,6 +122,11 @@ public class MenuInventario extends javax.swing.JFrame {
         jButton7.setBackground(new java.awt.Color(255, 255, 255));
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/botonAgregar.png"))); // NOI18N
         jButton7.setBorderPainted(false);
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -111,6 +142,38 @@ public class MenuInventario extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        MenuAgregarProducto ventana = new MenuAgregarProducto();
+        ventana.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        if(listarLista.getSelectedValue() == null) return;
+        MenuEditarProducto ventana = new MenuEditarProducto();
+        ventana.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton6ActionPerformed
+    
+    private String confirmarBorrar = ""; // Esta mecanica la creo Cbastian Compila. Pueden despositarle todo el dinero.
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        if(listarLista.getSelectedValue() == null) return;
+        
+        if(!confirmarBorrar.equals(listarLista.getSelectedValue())) {
+            confirmarBorrar = listarLista.getSelectedValue();
+            JOptionPane.showMessageDialog(this,"Cuidado, esta accion es irreversible.");
+        }
+        else {
+            inventario.eliminarProducto(listarLista.getSelectedIndex());
+            refrescar();
+            JOptionPane.showMessageDialog(this,"Producto "+ confirmarBorrar +" eliminado correctamente.");
+            confirmarBorrar = "";
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -158,8 +221,8 @@ public class MenuInventario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList<String> listarLista;
     // End of variables declaration//GEN-END:variables
 }

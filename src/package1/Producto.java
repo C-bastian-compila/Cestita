@@ -13,6 +13,26 @@ public class Producto {
     private int cantidadLista;
     private int cantidadPosecion;
     
+    public Producto ( String nombre){
+        this.nombreProducto=nombre;
+        this.marca="";
+        this.superMercado="";
+        this.valor=0;
+        this.idProducto=0;
+        this.cantidadLista=0;
+        this.cantidadPosecion=0;
+    }
+    
+    public Producto ( String nombre,String cantidad){
+        this.nombreProducto=nombre;
+        this.marca="";
+        this.superMercado="";
+        this.valor=0;
+        this.idProducto=0;
+        this.cantidadLista=Integer.parseInt(cantidad);
+        this.cantidadPosecion=0;
+    }
+    
     public String getNombreProducto() {
         return nombreProducto;
     }

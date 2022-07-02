@@ -151,7 +151,9 @@ public class MenuInicio extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        MenuInventario ventana = new MenuInventario();
+        MenuInventario ventana = new MenuInventario(this,inventario);
+        ventana.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**

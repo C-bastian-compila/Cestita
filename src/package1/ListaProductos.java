@@ -66,9 +66,7 @@ public class ListaProductos {
         return true;
     }
     
-    public boolean eliminarProducto(int idProducto){
-        return true;
-    }
+   
     
     public boolean editarProducto(int idProducto){
         return true;
@@ -76,5 +74,48 @@ public class ListaProductos {
     
     public boolean buscarProducto(int idProducto){
         return true;
+    }
+    
+    public boolean crearProducto (Producto producto){
+        
+        if(!existeProducto(producto.getNombreProducto())){
+            this.productos.add(producto);
+            return true;
+        }
+        
+        return false;
+    }
+    
+    public boolean existeProducto(String nombreProducto){
+        
+       for(int i = 0; i < productos.size(); i++){
+
+            if(productos.get(i).getNombreProducto().equals(nombreProducto)) return true;
+        }
+        
+        return false;
+    }
+    
+     public boolean eliminarProducto(int posicion){
+         
+         if(productos.remove(posicion) != null) return true;
+        return false;
+    }
+     
+     public Producto buscarProducto (String nombreP){
+         
+         for(int i = 0; i < productos.size(); i++){
+
+            if(productos.get(i).getNombreProducto().equals(nombreP)){
+                return productos.get(i);
+            } 
+        }
+         
+         return null;
+     }
+    
+    
+    public int getCantProductos(){
+        return productos.size();
     }
 }

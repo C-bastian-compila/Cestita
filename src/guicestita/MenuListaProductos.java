@@ -4,7 +4,9 @@
  */
 package guicestita;
 
+
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import package1.*;
 
 /**
@@ -21,6 +23,7 @@ public class MenuListaProductos extends javax.swing.JFrame {
     }
     
     private  ColeccionListas listas;
+    private ListaProductos productos;
     private JFrame anterior;
 
     
@@ -29,18 +32,38 @@ public class MenuListaProductos extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         this.listas = listas;
+        this.productos= listaSeleccionada;
         this.anterior = anterior;
         
-//        this.refrescar();   
+        this.refrescar();   
     }
     
-//    public void refrescar() {
-//        DefaultListModel <String> model = new DefaultListModel <>();
-//        listarLista.setModel(model);
-//        for(int i=0 ; i<listas.getCantListas(); i++){
-//            model.addElement(listas.getLista(i).getNombreLista());
-//        }
-//    }
+public void refrescar() {
+        
+        DefaultTableModel tableModel = new DefaultTableModel() {
+
+            @Override
+            public boolean isCellEditable(int row, int column) {
+               //all cells false
+               return false;
+            }
+        };
+        
+        tablaProductos.setModel(tableModel);
+        tableModel.setRowCount(0);
+        tableModel.addColumn("Nombre");
+        tableModel.addColumn("Cantidad");
+        
+        for(int i=0; i < productos.getCantProductos() ; i++){
+            Object [] filas = new Object[2];
+            
+            filas[0]=productos.getProductos().get(i).getNombreProducto();
+            filas[1]=productos.getProductos().get(i).getCantidadLista();
+            
+            tableModel.addRow(filas);
+        }
+        
+    }
     
 
     /**
@@ -52,21 +75,177 @@ public class MenuListaProductos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaProductos = new javax.swing.JTable();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setMinimumSize(new java.awt.Dimension(400, 580));
+        jPanel1.setPreferredSize(new java.awt.Dimension(400, 580));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButton1.setBackground(new java.awt.Color(217, 217, 217));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/botonLista.png"))); // NOI18N
+        jButton1.setBorderPainted(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, -1, -1));
+
+        jButton5.setBackground(new java.awt.Color(217, 217, 217));
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/botonInicio.png"))); // NOI18N
+        jButton5.setBorderPainted(false);
+        jButton5.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
+        jButton5.setMinimumSize(new java.awt.Dimension(400, 520));
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
+
+        jButton6.setBackground(new java.awt.Color(217, 217, 217));
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/botonBuscar.png"))); // NOI18N
+        jButton6.setBorderPainted(false);
+        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, -1, -1));
+
+        jButton7.setBackground(new java.awt.Color(217, 217, 217));
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/botonInventario.png"))); // NOI18N
+        jButton7.setBorderPainted(false);
+        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 110, -1, -1));
+
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/botonQuitar.png"))); // NOI18N
+        jButton2.setBorderPainted(false);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 290, -1, -1));
+
+        jButton4.setBackground(new java.awt.Color(255, 255, 255));
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/botonAgregar.png"))); // NOI18N
+        jButton4.setBorderPainted(false);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 240, -1, -1));
+
+        jButton3.setBackground(new java.awt.Color(255, 255, 255));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/botonEditar.png"))); // NOI18N
+        jButton3.setBorderPainted(false);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 190, -1, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/barraIconos.png"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 105, -1, -1));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/barraTitulo.png"))); // NOI18N
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 18, -1, -1));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/botonUsuario.png"))); // NOI18N
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(329, 30, -1, -1));
+
+        tablaProductos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Nombre", "Cantidad"
+            }
+        ));
+        jScrollPane1.setViewportView(tablaProductos);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 190, 290));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jButton5ActionPerformed
+    
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if(tablaProductos.getSelectedRow() == -1){
+            JOptionPane.showMessageDialog(this,"Debes seleccionar un Paciente");
+            return;
+        }
+        
+        DefaultTableModel tm = (DefaultTableModel) tablaProductos.getModel();
+        String nombre = String.valueOf(tm.getValueAt(tablaProductos.getSelectedRow(),0));
+        String cantidad = String.valueOf(tm.getValueAt(tablaProductos.getSelectedRow(),1));
+        
+        int confirmacion = JOptionPane.showConfirmDialog(this, "Estas seguro que deseas borrar \n " + nombre,"Confirmacion",JOptionPane.YES_NO_OPTION);
+        if(confirmacion != JOptionPane.YES_OPTION){
+            JOptionPane.showMessageDialog(this,"No se ha hecho ningun cambio.");
+            return;
+        }
+        
+        
+        if(productos.eliminarProducto(tablaProductos.getSelectedRow())){
+            JOptionPane.showMessageDialog(this,"Eliminado Correctamente.");
+        }
+        
+        this.refrescar();
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+                // TODO add your handling code here:
+        MenuAgregarProducto ventana = new MenuAgregarProducto(this, productos);
+        ventana.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        DefaultTableModel tm = (DefaultTableModel) tablaProductos.getModel();
+        String nombre = String.valueOf(tm.getValueAt(tablaProductos.getSelectedRow(),0));
+        MenuEditarProducto ventana = new MenuEditarProducto(this, productos, nombre);
+        ventana.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        anterior.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -104,5 +283,18 @@ public class MenuListaProductos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tablaProductos;
     // End of variables declaration//GEN-END:variables
 }
