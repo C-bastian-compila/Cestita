@@ -1,3 +1,3 @@
 # Cestita
 
-Proyecto de Ingeniaría de Software
+Proyecto de Ingeniería de Software
