@@ -24,7 +24,7 @@ public class MenuListaProductos extends javax.swing.JFrame {
     private JFrame anterior;
 
     
-    public MenuListaProductos(JFrame anterior, ColeccionListas listas) {
+    public MenuListaProductos(JFrame anterior, ColeccionListas listas, ListaProductos listaSeleccionada) {
         
         initComponents();
         setLocationRelativeTo(null);

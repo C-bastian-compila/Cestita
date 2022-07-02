@@ -66,6 +66,7 @@ public class MenuListas extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         listarLista = new javax.swing.JList<>();
+        jButton8 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -156,6 +157,14 @@ public class MenuListas extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 150, 250));
 
+        jButton8.setText("Seleccionar");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 460, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -184,7 +193,7 @@ public class MenuListas extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
     
-    private String confirmarBorrar = "";
+    private String confirmarBorrar = ""; // Esta mecanica la creo Cbastian Compila. Pueden despositarle todo el dinero.
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if(listarLista.getSelectedValue() == null) return;
         if(!confirmarBorrar.equals(listarLista.getSelectedValue())) {
@@ -211,21 +220,18 @@ public class MenuListas extends javax.swing.JFrame {
         }
         else JOptionPane.showMessageDialog(this,"Este nombre de lista ya esta en uso.");
     }//GEN-LAST:event_jButton3ActionPerformed
-    private String dobleClick; // Esta mecanica la creo Cbastian Compila. Pueden despositarle todo el dinero.
+
     private void listarListaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listarListaMouseClicked
-        // TODO add your handling code here:
-        if(!dobleClick.equals(listarLista.getSelectedValue())) {
-            dobleClick = listarLista.getSelectedValue();
-        }
-        else {
-            MenuListaProductos ventana = new MenuListaProductos(this, listas);
-            ventana.setVisible(true);
-            this.dispose();
-            dobleClick = "";
-        }
-        
-        
+    
     }//GEN-LAST:event_listarListaMouseClicked
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        if(listarLista.getSelectedValue() == null) return;
+        MenuListaProductos ventana = new MenuListaProductos(this, listas, listas.buscarLista(listarLista.getSelectedValue()));
+        ventana.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton8ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -271,6 +277,7 @@ public class MenuListas extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
