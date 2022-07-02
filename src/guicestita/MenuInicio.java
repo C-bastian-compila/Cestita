@@ -55,11 +55,14 @@ public class MenuInicio extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
-        setMaximumSize(new java.awt.Dimension(400, 578));
-        setMinimumSize(new java.awt.Dimension(400, 578));
+        setMaximumSize(new java.awt.Dimension(400, 580));
+        setMinimumSize(new java.awt.Dimension(400, 580));
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setMaximumSize(new java.awt.Dimension(400, 580));
+        jPanel1.setMinimumSize(new java.awt.Dimension(400, 580));
+        jPanel1.setPreferredSize(new java.awt.Dimension(400, 580));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton4.setBackground(new java.awt.Color(217, 217, 217));
@@ -128,7 +131,7 @@ public class MenuInicio extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -136,7 +139,7 @@ public class MenuInicio extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        MenuLista ventana = new MenuLista(this,listas);
+        MenuListas ventana = new MenuListas(this,listas);
         ventana.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed

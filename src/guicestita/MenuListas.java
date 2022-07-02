@@ -6,17 +6,19 @@ package guicestita;
 
 import package1.ColeccionListas;
 import javax.swing.*;
+import java.awt.Dimension;
+import package1.ListaProductos;
 
 /**
  *
  * @author erikb
  */
-public class MenuLista extends javax.swing.JFrame {
+public class MenuListas extends javax.swing.JFrame {
 
     /**
      * Creates new form MenuLista
      */
-    public MenuLista() {
+    public MenuListas() {
         initComponents();
     }
     
@@ -24,16 +26,19 @@ public class MenuLista extends javax.swing.JFrame {
     private JFrame anterior;
 
     
-    public MenuLista(JFrame anterior, ColeccionListas listas) {
+    public MenuListas(JFrame anterior, ColeccionListas listas) {
         
         initComponents();
         setLocationRelativeTo(null);
         this.listas = listas;
         this.anterior = anterior;
         
+        this.refrescar();   
+    }
+    
+    public void refrescar() {
         DefaultListModel <String> model = new DefaultListModel <>();
         listarLista.setModel(model);
-        
         for(int i=0 ; i<listas.getCantListas(); i++){
             model.addElement(listas.getLista(i).getNombreLista());
         }
@@ -63,8 +68,11 @@ public class MenuLista extends javax.swing.JFrame {
         listarLista = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setMinimumSize(new java.awt.Dimension(400, 580));
+        jPanel1.setPreferredSize(new java.awt.Dimension(400, 580));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton1.setBackground(new java.awt.Color(217, 217, 217));
@@ -97,7 +105,12 @@ public class MenuLista extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/botonQuitar.png"))); // NOI18N
         jButton2.setBorderPainted(false);
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 290, -1, -1));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 290, -1, -1));
 
         jButton4.setBackground(new java.awt.Color(255, 255, 255));
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/botonAgregar.png"))); // NOI18N
@@ -107,12 +120,17 @@ public class MenuLista extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, -1, -1));
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 240, -1, -1));
 
         jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/botonEditar.png"))); // NOI18N
         jButton3.setBorderPainted(false);
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, -1, -1));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 190, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/barraIconos.png"))); // NOI18N
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 105, -1, -1));
@@ -128,6 +146,11 @@ public class MenuLista extends javax.swing.JFrame {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
+        });
+        listarLista.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listarListaMouseClicked(evt);
+            }
         });
         jScrollPane1.setViewportView(listarLista);
 
@@ -160,6 +183,49 @@ public class MenuLista extends javax.swing.JFrame {
         ventana.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
+    
+    private String confirmarBorrar = "";
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if(listarLista.getSelectedValue() == null) return;
+        if(!confirmarBorrar.equals(listarLista.getSelectedValue())) {
+            confirmarBorrar = listarLista.getSelectedValue();
+            JOptionPane.showMessageDialog(this,"Cuidado, esta accion es irreversible.");
+        }
+        else {
+            listas.eliminarLista(listarLista.getSelectedIndex());
+            refrescar();
+            JOptionPane.showMessageDialog(this,"Lista "+ confirmarBorrar +" eliminada correctamente.");
+            confirmarBorrar = "";
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        
+        if(listarLista.getSelectedValue() == null) return;
+        String nuevoNombre = JOptionPane.showInputDialog("Escriba un nuevo nombre:");
+        if(nuevoNombre.equals("")) return;
+        if(!listas.existeLista(nuevoNombre)) {
+            ListaProductos listaProductos = listas.buscarLista(listarLista.getSelectedValue());
+            listaProductos.setNombreLista(nuevoNombre);
+            refrescar();
+        }
+        else JOptionPane.showMessageDialog(this,"Este nombre de lista ya esta en uso.");
+    }//GEN-LAST:event_jButton3ActionPerformed
+    private String dobleClick; // Esta mecanica la creo Cbastian Compila. Pueden despositarle todo el dinero.
+    private void listarListaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listarListaMouseClicked
+        // TODO add your handling code here:
+        if(!dobleClick.equals(listarLista.getSelectedValue())) {
+            dobleClick = listarLista.getSelectedValue();
+        }
+        else {
+            MenuListaProductos ventana = new MenuListaProductos(this, listas);
+            ventana.setVisible(true);
+            this.dispose();
+            dobleClick = "";
+        }
+        
+        
+    }//GEN-LAST:event_listarListaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -178,20 +244,21 @@ public class MenuLista extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuLista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuListas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuLista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuListas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuLista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuListas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuLista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuListas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuLista().setVisible(true);
+                new MenuListas().setVisible(true);
             }
         });
     }

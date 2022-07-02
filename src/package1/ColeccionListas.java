@@ -29,12 +29,26 @@ public class ColeccionListas {
         this.listasCompletadas = listasCompletadas;
     }
     
-    public boolean crearListaProductos (String nombreLista){
-        return true;
+    public boolean crearListaProductos(ListaProductos lista){
+        
+        if(!this.existeLista(lista.getNombreLista())) {
+            this.listas.add(lista);
+            return true;
+        }
+        return false;
     }
+    public boolean existeLista(String nombreLista ) {
+        
+        for(int i = 0; i < listas.size(); i++){
+
+            if(listas.get(i).getNombreLista().equals(nombreLista)) return true;
+        }
+        return false;
     
-    public boolean eliminarLista (String nombreLista){
-        return true;
+    }
+    public boolean eliminarLista (int posicion){
+        if(listas.remove(posicion) != null) return true;
+        return false;
     }
     
     public boolean renombrarLista (String nombreLista){
@@ -42,6 +56,11 @@ public class ColeccionListas {
     }
     
     public ListaProductos buscarLista (String nombreLista){
+        
+        for(int i = 0; i < listas.size(); i++){
+
+            if(listas.get(i).getNombreLista().equals(nombreLista)) return listas.get(i);
+        }
         return null;
     }
     
