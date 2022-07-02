@@ -4,31 +4,17 @@
  */
 package guicestita;
 
-import package1.ColeccionListas;
-
 /**
  *
  * @author erikb
  */
-public class MenuLista extends javax.swing.JFrame {
+public class MenuInventario extends javax.swing.JFrame {
 
     /**
-     * Creates new form MenuLista
+     * Creates new form MenuInventario
      */
-    public MenuLista() {
+    public MenuInventario() {
         initComponents();
-    }
-    
-    private  ColeccionListas listas;
-    private MenuInicio anterior;
-
-    
-    public MenuLista(MenuInicio anterior, ColeccionListas listas) {
-        
-        initComponents();
-        
-        this.listas = listas;
-        this.anterior = anterior;
     }
 
     /**
@@ -42,17 +28,17 @@ public class MenuLista extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,49 +46,33 @@ public class MenuLista extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton1.setBackground(new java.awt.Color(217, 217, 217));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/botonLista.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/botonInicio.png"))); // NOI18N
         jButton1.setBorderPainted(false);
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
 
-        jButton5.setBackground(new java.awt.Color(217, 217, 217));
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/botonInicio.png"))); // NOI18N
-        jButton5.setBorderPainted(false);
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
-
-        jButton6.setBackground(new java.awt.Color(217, 217, 217));
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/botonBuscar.png"))); // NOI18N
-        jButton6.setBorderPainted(false);
-        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, -1, -1));
-
-        jButton7.setBackground(new java.awt.Color(217, 217, 217));
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/botonInventario.png"))); // NOI18N
-        jButton7.setBorderPainted(false);
-        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 110, -1, -1));
-
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/botonQuitar.png"))); // NOI18N
+        jButton2.setBackground(new java.awt.Color(217, 217, 217));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/botonLista.png"))); // NOI18N
         jButton2.setBorderPainted(false);
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 290, -1, -1));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, -1, -1));
 
-        jButton4.setBackground(new java.awt.Color(255, 255, 255));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/botonAgregar.png"))); // NOI18N
-        jButton4.setBorderPainted(false);
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, -1, -1));
-
-        jButton3.setBackground(new java.awt.Color(255, 255, 255));
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/botonEditar.png"))); // NOI18N
+        jButton3.setBackground(new java.awt.Color(217, 217, 217));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/botonBuscar.png"))); // NOI18N
         jButton3.setBorderPainted(false);
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, -1, -1));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, -1, -1));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/barraIconos.png"))); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 105, -1, -1));
-        jLabel2.getAccessibleContext().setAccessibleName("");
+        jButton4.setBackground(new java.awt.Color(217, 217, 217));
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/botonInventario.png"))); // NOI18N
+        jButton4.setBorderPainted(false);
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 110, -1, -1));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/barraTitulo.png"))); // NOI18N
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 18, -1, -1));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/barraIconos.png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 105, -1, -1));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/botonUsuario.png"))); // NOI18N
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(329, 30, -1, -1));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/barraTitulo.png"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 18, -1, -1));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/botonUsuario.png"))); // NOI18N
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(329, 30, -1, -1));
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -112,6 +82,21 @@ public class MenuLista extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jList1);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 150, 250));
+
+        jButton5.setBackground(new java.awt.Color(255, 255, 255));
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/botonQuitar.png"))); // NOI18N
+        jButton5.setBorderPainted(false);
+        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 290, -1, -1));
+
+        jButton6.setBackground(new java.awt.Color(255, 255, 255));
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/botonEditar.png"))); // NOI18N
+        jButton6.setBorderPainted(false);
+        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, -1, -1));
+
+        jButton7.setBackground(new java.awt.Color(255, 255, 255));
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/botonAgregar.png"))); // NOI18N
+        jButton7.setBorderPainted(false);
+        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -144,20 +129,20 @@ public class MenuLista extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuLista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuInventario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuLista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuInventario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuLista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuInventario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuLista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuInventario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuLista().setVisible(true);
+                new MenuInventario().setVisible(true);
             }
         });
     }
@@ -170,9 +155,9 @@ public class MenuLista extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
