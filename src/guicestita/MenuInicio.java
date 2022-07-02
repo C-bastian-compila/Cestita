@@ -25,6 +25,7 @@ public class MenuInicio extends javax.swing.JFrame {
 
     public MenuInicio(Inventario inventario, ColeccionListas listas) {
         initComponents();
+        setLocationRelativeTo(null);
         this.listas = listas;
         this.inventario = inventario;
     }
@@ -74,6 +75,11 @@ public class MenuInicio extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(217, 217, 217));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/botonLista.png"))); // NOI18N
         jButton2.setBorderPainted(false);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, -1, -1));
 
         jButton1.setBackground(new java.awt.Color(217, 217, 217));
@@ -127,6 +133,13 @@ public class MenuInicio extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        MenuLista ventana = new MenuLista(this,listas);
+        ventana.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

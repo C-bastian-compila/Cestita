@@ -48,4 +48,12 @@ public class ColeccionListas {
     public ListaProductos buscarListaComp (String nombreLista){
         return null;
     }
+    
+    public int getCantListas(){
+        return listas.size();
+    }
+    
+    public ListaProductos getLista(int posicion){
+        return listas.get(posicion);
+    }
 }

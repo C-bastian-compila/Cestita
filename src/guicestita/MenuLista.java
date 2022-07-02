@@ -5,6 +5,7 @@
 package guicestita;
 
 import package1.ColeccionListas;
+import javax.swing.*;
 
 /**
  *
@@ -20,15 +21,22 @@ public class MenuLista extends javax.swing.JFrame {
     }
     
     private  ColeccionListas listas;
-    private MenuInicio anterior;
+    private JFrame anterior;
 
     
-    public MenuLista(MenuInicio anterior, ColeccionListas listas) {
+    public MenuLista(JFrame anterior, ColeccionListas listas) {
         
         initComponents();
-        
+        setLocationRelativeTo(null);
         this.listas = listas;
         this.anterior = anterior;
+        
+        DefaultListModel <String> model = new DefaultListModel <>();
+        listarLista.setModel(model);
+        
+        for(int i=0 ; i<listas.getCantListas(); i++){
+            model.addElement(listas.getLista(i).getNombreLista());
+        }
     }
 
     /**
@@ -52,7 +60,7 @@ public class MenuLista extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        listarLista = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,6 +75,13 @@ public class MenuLista extends javax.swing.JFrame {
         jButton5.setBackground(new java.awt.Color(217, 217, 217));
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/botonInicio.png"))); // NOI18N
         jButton5.setBorderPainted(false);
+        jButton5.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
+        jButton5.setMinimumSize(new java.awt.Dimension(400, 520));
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
 
         jButton6.setBackground(new java.awt.Color(217, 217, 217));
@@ -87,6 +102,11 @@ public class MenuLista extends javax.swing.JFrame {
         jButton4.setBackground(new java.awt.Color(255, 255, 255));
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/botonAgregar.png"))); // NOI18N
         jButton4.setBorderPainted(false);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, -1, -1));
 
         jButton3.setBackground(new java.awt.Color(255, 255, 255));
@@ -104,12 +124,12 @@ public class MenuLista extends javax.swing.JFrame {
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/botonUsuario.png"))); // NOI18N
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(329, 30, -1, -1));
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        listarLista.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(listarLista);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 150, 250));
 
@@ -126,6 +146,20 @@ public class MenuLista extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        anterior.setVisible(true);
+        this.dispose();
+        
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        MenuAgregarLista ventana = new MenuAgregarLista(this, listas);
+        ventana.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -173,8 +207,8 @@ public class MenuLista extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList<String> listarLista;
     // End of variables declaration//GEN-END:variables
 }
